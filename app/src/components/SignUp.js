@@ -1,7 +1,7 @@
 
 
 
-function LogIn() {
+function SignUp() {
 
 
     return(
@@ -9,16 +9,16 @@ function LogIn() {
             <main className="form-signin w-100 m-auto">
                 <form>
                     <img className="mb-4" src={require("../assets/basket-logo.png")} alt="" width="72" height="72"/>
-                    <h1 className="h3 mb-3 fw-normal">Please log in</h1>
+                    <h1 className="h3 mb-3 fw-normal">Welcome!</h1>
                     <div className="form-floating">
                         <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com"/>
-                        <label htmlFor="floatingInput">Username</label>
+                        <label htmlFor="floatingInput">Please enter a username</label>
                     </div>
                     <div className="form-floating">
                         <input type="password" className="form-control" id="floatingPassword" placeholder="Password"/>
-                        <label htmlFor="floatingPassword">Password</label>
+                        <label htmlFor="floatingPassword">Please create a password</label>
                     </div>
-                    <button className="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
+                    <button className="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
                 </form>
             </main>
         </div>
@@ -26,4 +26,4 @@ function LogIn() {
 }
 
 
-export default LogIn
+export default SignUp
