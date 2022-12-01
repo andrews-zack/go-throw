@@ -3,8 +3,6 @@ import haversine from 'haversine-distance'
 
 function CourseSelect({ courses, setCourses }) {
 
-    console.log(courses)
-
     let a = navigator.geolocation.getCurrentPosition(position => {
         const { latitude, longitude } = position.coords
         a = { latitude: latitude, longitude: longitude }
@@ -34,7 +32,7 @@ function CourseSelect({ courses, setCourses }) {
             </div>
         </div>
     )
-    
+
     return (
         <div>
             <button onClick={() => { geoLocate() }} className="btn btn-info">Do the thing</button>
