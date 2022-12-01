@@ -4,6 +4,7 @@ import Homepage from './components/Homepage';
 import LogIn from './components/LogIn';
 import SignUp from './components/SignUp';
 import CourseSelect from './components/CourseSelect';
+import MapTest from './components/MapTest';
 
 
 
@@ -31,6 +32,7 @@ function App() {
             {page === 'LogIn' && <LogIn/>}
             {page === 'SignUp' && <SignUp/>}
             {page === 'CourseSelect' && <CourseSelect courses={data} setCourses={setData} />}
+            {/* <MapTest /> */}
         </>
     )
 };
