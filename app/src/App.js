@@ -7,12 +7,14 @@ import CourseSelect from './components/CourseSelect';
 
 
 
+
 function App() {
 
     const [ data, setData ] = useState([]);
     const [ page, setPage ] = useState('Homepage');
 
     const url = 'https://8000-andrewszack-gothrowdb-rxyuwddajv2.ws-us77.gitpod.io/api/courses/';
+
 
     useEffect(() => {
         async function getData() {
@@ -28,7 +30,7 @@ function App() {
             {page === 'Homepage' && <Homepage handleClick={setPage}/>}
             {page === 'LogIn' && <LogIn/>}
             {page === 'SignUp' && <SignUp/>}
-            {page === 'CourseSelect' && <CourseSelect courses={data}/>}
+            {page === 'CourseSelect' && <CourseSelect courses={data} setCourses={setData} />}
         </>
     )
 };

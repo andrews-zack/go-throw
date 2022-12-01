@@ -1,37 +1,43 @@
 import haversine from 'haversine-distance'
 
 
-function CourseSelect(props) {
+function CourseSelect({ courses, setCourses }) {
 
-    let courseList = props.courses
-    // let sortedCourse = {}
-    console.log(props.courses)
+    console.log(courses)
+
+    let a = navigator.geolocation.getCurrentPosition(position => {
+        const { latitude, longitude } = position.coords
+        a = { latitude: latitude, longitude: longitude }
+        console.log(a)
+    })
     function geoLocate() {
-        navigator.geolocation.getCurrentPosition(position => {
-            const { latitude, longitude } = position.coords
-            let a = {latitude: props.courses[0].course_lat, longitude: props.courses[0].course_long}
-            let b = {latitude: latitude, longitude:longitude}
-            console.log((haversine(a,b))*0.00062137)
-            // for(let i=0; i<props.courses.length; i++) {
-                
-            // }
+        for (let i = 0; i < courses.length; i++) {
+            let b = { latitude: courses[i].course_lat, longitude: courses[i].course_long }
+            courses[i] = {
+                name: `${courses[i].course_name}`,
+                distance: ((haversine(a, b)) * 0.00062137).toFixed(2)
+            }
+        }
+        courses.sort(function (a, b) {
+            return parseFloat(a.distance) - parseFloat(b.distance)
         })
+        setCourses([...courses])
     }
 
-    let courseItems = courseList.map((item) =>
+    let courseItems = courses.map((item) =>
         <div className="col-sm-6 col-lg-6 py-1">
             <div className="card border border-dark h-100">
                 <div className="card-body">
-                    <h5 className="card-title fs-2 fw-bold">{item.course_name}</h5>
-                    <p className="card-text fs-4">{`${item.holes } holes`}</p>
+                    <h5 className="card-title fs-2 fw-bold">{item.name}</h5>
+                    <p className="card-text fs-4">{`${item.distance} miles away`}</p>
                 </div>
             </div>
         </div>
     )
-
-    return(
+    
+    return (
         <div>
-            <button onClick={geoLocate} className="btn btn-info">Do the thing</button> 
+            <button onClick={() => { geoLocate() }} className="btn btn-info">Do the thing</button>
             <div className="container mt-3 pt-3" id="cont">
                 <div className="row">
                     {courseItems}
