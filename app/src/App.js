@@ -4,7 +4,7 @@ import Homepage from './components/Homepage';
 import LogIn from './components/LogIn';
 import SignUp from './components/SignUp';
 import CourseSelect from './components/CourseSelect';
-import MapTest from './components/MapTest';
+import Hole from './components/Hole';
 
 
 
@@ -28,11 +28,12 @@ function App() {
 
     return(
         <>
-            {page === 'Homepage' && <Homepage handleClick={setPage}/>}
+            {/* {page === 'Homepage' && <Homepage handleClick={setPage}/>}
             {page === 'LogIn' && <LogIn/>}
             {page === 'SignUp' && <SignUp/>}
-            {page === 'CourseSelect' && <CourseSelect courses={data} setCourses={setData} />}
-            {/* <MapTest /> */}
+            {page === 'CourseSelect' && <CourseSelect courses={data} setCourses={setData} handleClick={setPage} />} */}
+            {/* <MapSnip /> */}
+            <Hole />
         </>
     )
 };
