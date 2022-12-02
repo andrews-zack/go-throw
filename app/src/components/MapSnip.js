@@ -16,7 +16,6 @@ export default function MapSnip() {
 
 function Map() {
     return (
-        <GoogleMap zoom = {19} center = {center} mapContainerClassName = 'map-container'>
-        </GoogleMap>
+        <GoogleMap zoom = {19} center = {center} mapContainerClassName = 'map-container'></GoogleMap>
         )
 }

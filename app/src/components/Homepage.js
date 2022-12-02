@@ -20,7 +20,11 @@ function Homepage(props) {
                     <div className="col-6 d-flex justify-content-center">
                         <button onClick={() => props.handleClick('CourseSelect')} className="btn btn-light btn-outline-dark">Start a Round</button>
                     </div>
+                    <div className="col-6 d-flex justify-content-center">
+                        <button onClick={() => props.handleClick('Hole')} className="btn btn-light btn-outline-dark">Hole Demo</button>
+                    </div>
                 </div>
+                
             </div>
         </div>
     )

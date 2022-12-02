@@ -1,18 +1,18 @@
 import MapSnip from "./MapSnip"
 
-function Hole() {
+function Hole({ holes }) {
 
     return(
         <div className="d-flexflex-column justify-content-center">
-            <h3>Shilito Park</h3>
+            <h3>{holes[1].course}</h3>
             <div className="container">
                 <div className="row text-center">
-                    <div className="col">Hole 2</div>
-                    <div className="col">279ft</div>
-                    <div className="col">Par 3</div>
+                    <div className="col">Hole {holes[1].hole_num}</div>
+                    <div className="col">{holes[1].length}ft</div>
+                    <div className="col">Par {holes[1].par}</div>
                 </div>
             </div>
-            <MapSnip />
+            <MapSnip map={holes}/>
             <div className="container">
                 <div className="row">
                     <div className="col-8">Zack Andrews</div>

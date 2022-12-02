@@ -14,7 +14,7 @@ function App() {
     const [ data, setData ] = useState([]);
     const [ page, setPage ] = useState('Homepage');
 
-    const url = 'https://8000-andrewszack-gothrowdb-rxyuwddajv2.ws-us77.gitpod.io/api/courses/';
+    const url = 'https://8000-andrewszack-gothrowdb-rxyuwddajv2.ws-us77.gitpod.io/api/holes/';
 
 
     useEffect(() => {
@@ -28,12 +28,11 @@ function App() {
 
     return(
         <>
-            {/* {page === 'Homepage' && <Homepage handleClick={setPage}/>}
+            {page === 'Homepage' && <Homepage handleClick={setPage}/>}
             {page === 'LogIn' && <LogIn/>}
             {page === 'SignUp' && <SignUp/>}
-            {page === 'CourseSelect' && <CourseSelect courses={data} setCourses={setData} handleClick={setPage} />} */}
-            {/* <MapSnip /> */}
-            <Hole />
+            {page === 'CourseSelect' && <CourseSelect courses={data} setCourses={setData} handleClick={setPage} />}
+            {page === 'Hole' && <Hole holes={data}/>}
         </>
     )
 };
