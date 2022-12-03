@@ -1,11 +1,12 @@
 // import { useMemo } from 'react'
-import { GoogleMap, useLoadScript, MarkerF } from '@react-google-maps/api'
+import { GoogleMap, useLoadScript } from '@react-google-maps/api'
 
 
-const key = process.env.REACT_APP_PUBLIC_GOOGLE_MAPS_API_KEY
-const center = {lat: 37.98830, lng: -84.53274}
+let center = {}
 
-export default function MapSnip() {
+export default function MapSnip({map}) {
+    const key = process.env.REACT_APP_PUBLIC_GOOGLE_MAPS_API_KEY
+    center = {lat: map[1].hole_lat, lng: map[1].hole_long}
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: key
     })

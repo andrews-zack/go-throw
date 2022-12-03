@@ -1,6 +1,8 @@
 import MapSnip from "./MapSnip"
 
 function Hole({ holes }) {
+    // let selectedHoles = holes.filter(item => item.name === )
+
 
     return(
         <div className="d-flexflex-column justify-content-center">

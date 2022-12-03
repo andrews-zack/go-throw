@@ -1,7 +1,7 @@
 import haversine from 'haversine-distance'
 
 
-function CourseSelect({ courses, setCourses }) {
+function CourseSelect({ courses, setCourses, handleClick }) {
 
     let a = navigator.geolocation.getCurrentPosition(position => {
         const { latitude, longitude } = position.coords
@@ -25,7 +25,7 @@ function CourseSelect({ courses, setCourses }) {
     let courseItems = courses.map((item) =>
         <div className="col-sm-6 col-lg-6 py-1">
             <div className="card border border-dark h-100">
-                <div className="card-body">
+                <div onClick={() => handleClick('Hole')} className="card-body">
                     <h5 className="card-title fs-2 fw-bold">{item.name}</h5>
                     <p className="card-text fs-4">{`${item.distance} miles away`}</p>
                 </div>
