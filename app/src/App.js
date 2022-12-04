@@ -5,6 +5,7 @@ import LogIn from './components/LogIn';
 import SignUp from './components/SignUp';
 import CourseSelect from './components/CourseSelect';
 import Hole from './components/Hole';
+import { GlobalProvider } from './context/GlobalState'
 
 
 
@@ -27,13 +28,13 @@ function App() {
 
 
     return(
-        <>
+        <GlobalProvider>
             {page === 'Homepage' && <Homepage handleClick={setPage}/>}
             {page === 'LogIn' && <LogIn/>}
             {page === 'SignUp' && <SignUp/>}
             {page === 'CourseSelect' && <CourseSelect courses={data} setCourses={setData} handleClick={setPage} />}
             {page === 'Hole' && <Hole holes={data}/>}
-        </>
+        </GlobalProvider>
     )
 };
 
