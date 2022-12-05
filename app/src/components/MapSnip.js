@@ -6,7 +6,7 @@ let center = {}
 
 export default function MapSnip({map}) {
     const key = process.env.REACT_APP_PUBLIC_GOOGLE_MAPS_API_KEY
-    center = {lat: map[1].hole_lat, lng: map[1].hole_long}
+    center = {lat: map[0].hole_list[1].hole_lat, lng: map[0].hole_list[1].hole_long}
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: key
     })

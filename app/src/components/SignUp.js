@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import AuthService from "../services/auth.service";
 
 
-const SignUp = () => {
+const SignUp = ({ handleClick }) => {
     const [user, setUser] = useState({
         username: "",
         password: "",
@@ -40,7 +40,7 @@ const SignUp = () => {
                         <input onChange={(e) => handleChange('password', e.target.value)} type="password" className="form-control" id="password" placeholder="Password"/>
                         <label htmlFor="floatingPassword">Please create a password</label>
                     </div>
-                    <button className="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+                    <button onClick={() => handleClick('Profile')} className="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
                 </form>
             </main>
         </div>

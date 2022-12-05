@@ -4,7 +4,7 @@ import { useGlobalState } from "../context/GlobalState";
 import jwtDecode from "jwt-decode";
 
 
-const LogIn = () => {
+const LogIn = ({ handleClick }) => {
     // let navigate = useNavigate();
 
     const [ state, dispatch ] = useGlobalState();
@@ -44,7 +44,7 @@ const LogIn = () => {
                         <input onChange={(e) => setPassword(e.target.value)} type="password" required className="form-control" id="password" placeholder="Password"/>
                         <label htmlFor="floatingPassword">Password</label>
                     </div>
-                    <button className="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
+                    <button onClick={() => handleClick('Profile')} className="w-100 btn btn-lg btn-primary" type="button">Log in</button>
                 </form>
             </main>
         </div>
