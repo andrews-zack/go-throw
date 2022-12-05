@@ -22,10 +22,19 @@ function CourseSelect({ courses, setCourses, handleClick }) {
         setCourses([...courses])
     }
 
+    const filterData = (e) => {
+        let selectedCourse = e.target
+        courses.filter(item => item.course_name === selectedCourse.name)
+        setCourses([...courses])
+        console.log(setCourses)
+    }
+
     let courseItems = courses.map((item) =>
         <div className="col-sm-6 col-lg-6 py-1">
             <div className="card border border-dark h-100">
-                <div onClick={() => handleClick('Hole')} className="card-body">
+                <div onClick={() => {handleClick('Hole');
+                                    filterData();
+                        }} className="card-body">
                     <h5 className="card-title fs-2 fw-bold">{item.name}</h5>
                     <p className="card-text fs-4">{`${item.distance} miles away`}</p>
                 </div>
