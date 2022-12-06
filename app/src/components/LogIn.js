@@ -2,10 +2,11 @@ import React, { useState } from "react"
 import AuthService from "../services/auth.service";
 import { useGlobalState } from "../context/GlobalState";
 import jwtDecode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 
 const LogIn = ({ handleClick }) => {
-    // let navigate = useNavigate();
+    let navigate = useNavigate();
 
     const [ state, dispatch ] = useGlobalState();
 
@@ -23,7 +24,7 @@ const LogIn = ({ handleClick }) => {
                     currentUserToken: resp.access,
                     currentUser: data
                 })
-                // navigate('/profile')
+                navigate('/profile')
             });
     }
 
@@ -32,7 +33,7 @@ const LogIn = ({ handleClick }) => {
 
     return(
         <div>
-            <main className="form-signin w-100 m-auto">
+            <main className="c-form w-100 m-auto">
                 <form onSubmit={handleLogin}>
                     <img className="mb-4" src={require("../assets/basket-logo.png")} alt="" width="72" height="72"/>
                     <h1 className="h3 mb-3 fw-normal">Please log in</h1>
@@ -44,7 +45,7 @@ const LogIn = ({ handleClick }) => {
                         <input onChange={(e) => setPassword(e.target.value)} type="password" required className="form-control" id="password" placeholder="Password"/>
                         <label htmlFor="floatingPassword">Password</label>
                     </div>
-                    <button onClick={() => handleClick('Profile')} className="w-100 btn btn-lg btn-primary" type="button">Log in</button>
+                    <button className="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
                 </form>
             </main>
         </div>

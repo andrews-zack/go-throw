@@ -1,14 +1,18 @@
 // import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from "react-router-dom";
 import App from './App';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import './style.css'
+import { GlobalProvider } from './context/GlobalState';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <>
-    <App />
-  </>
+  <GlobalProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </GlobalProvider>
 );

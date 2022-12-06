@@ -1,8 +1,12 @@
 import React, { useState } from "react"
+import { Navigate, useNavigate } from "react-router-dom";
 import AuthService from "../services/auth.service";
 
 
-const SignUp = ({ handleClick }) => {
+const SignUp = () => {
+
+    let navigate = useNavigate();
+
     const [user, setUser] = useState({
         username: "",
         password: "",
@@ -22,6 +26,7 @@ const SignUp = ({ handleClick }) => {
     const handleRegister = (e) => {
         e.preventDefault();
         AuthService.register(user)
+        navigate('/profile')
     }
 
 
@@ -40,7 +45,7 @@ const SignUp = ({ handleClick }) => {
                         <input onChange={(e) => handleChange('password', e.target.value)} type="password" className="form-control" id="password" placeholder="Password"/>
                         <label htmlFor="floatingPassword">Please create a password</label>
                     </div>
-                    <button onClick={() => handleClick('Profile')} className="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+                    <button className="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
                 </form>
             </main>
         </div>

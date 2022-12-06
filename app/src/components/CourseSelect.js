@@ -1,7 +1,10 @@
 import haversine from 'haversine-distance'
+import { useNavigate } from "react-router-dom";
 
 
-function CourseSelect({ courses, setCourses, handleClick }) {
+function CourseSelect({ courses, setCourses }) {
+
+    let navigate = useNavigate();
 
     let a = navigator.geolocation.getCurrentPosition(position => {
         const { latitude, longitude } = position.coords
@@ -32,7 +35,7 @@ function CourseSelect({ courses, setCourses, handleClick }) {
     let courseItems = courses.map((item) =>
         <div className="col-sm-6 col-lg-6 py-1">
             <div className="card border border-dark h-100">
-                <div onClick={() => {handleClick('Hole');
+                <div onClick={() => {{navigate('/hole')};
                                     filterData();
                         }} className="card-body">
                     <h5 className="card-title fs-2 fw-bold">{item.name}</h5>
