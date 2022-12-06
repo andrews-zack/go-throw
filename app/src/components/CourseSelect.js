@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import haversine from 'haversine-distance'
-import { useNavigate, Route, Routes } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useGlobalState } from '../context/GlobalState';
-import Hole from './Hole';
 
 
 function CourseSelect({ setSelectedCourse, selectedCourse }) {

@@ -1,20 +1,21 @@
 import MapSnip from "./MapSnip"
+import { useState } from "react"
 
 function Hole({ holes }) {
-    // let selectedHoles = holes.filter(item => item.name === )
     console.log(holes)
-
+    const [ count, setCount ] = useState(3)
+    
     return(
         <div className="d-flexflex-column justify-content-center">
-            <h3>{holes[0].course_name}</h3>
+            <h3>{holes.course_name}</h3>
             <div className="container">
                 <div className="row text-center">
-                    <div className="col">Hole {holes[0].hole_list[1].hole_num}</div>
-                    <div className="col">{holes[0].hole_list[1].length}ft</div>
-                    <div className="col">Par {holes[0].hole_list[1].par}</div>
+                    <div className="col">Hole {holes.hole_list[count].hole_num}</div>
+                    <div className="col">{holes.hole_list[count].length}ft</div>
+                    <div className="col">Par {holes.hole_list[count].par}</div>
                 </div>
             </div>
-            <MapSnip map={holes}/>
+            <MapSnip map={holes} count={count}/>
             <div className="container">
                 <div className="row">
                     <div className="col-8">Zack Andrews</div>
@@ -26,10 +27,10 @@ function Hole({ holes }) {
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <button className="btn btn-outline-info">Previous Hole</button>
+                        <button onClick={setCount(count-1)} className="btn btn-outline-info">Previous Hole</button>
                     </div>
                     <div className="col justify-content-center">
-                        <button className="btn btn-outline-info">Next Hole</button>
+                        <button onClick={setCount(count+1)} className="btn btn-outline-info">Next Hole</button>
                     </div>
                 </div>
             </div>
