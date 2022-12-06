@@ -2,7 +2,7 @@ import MapSnip from "./MapSnip"
 
 function Hole({ holes }) {
     // let selectedHoles = holes.filter(item => item.name === )
-    console.log(holes[0].hole_list[1])
+    console.log(holes)
 
     return(
         <div className="d-flexflex-column justify-content-center">

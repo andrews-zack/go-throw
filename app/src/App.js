@@ -14,27 +14,22 @@ import Profile from './components/Profile';
 
 function App() {
 
-    const [ data, setData ] = useState([]);
-    // const [ page, setPage ] = useState('Homepage');
+    const [ users, setUsers ] = useState([]);
     const [ state, dispatch ] = useGlobalState();
+    const [ selectedCourse, setSelectedCourse ] = useState({})
 
-    const url = 'https://8000-andrewszack-gothrowdb-rxyuwddajv2.ws-us77.gitpod.io/api/courses/';
+    // const url = 'https://8000-andrewszack-gothrowdb-rxyuwddajv2.ws-us77.gitpod.io/api/users/';
 
     let id = ''
 
     if (state.currentUser) {
         id = state.currentUser.user_id
-    } else {
-
     }
 
     useEffect(() => {
-        async function getData() {
-            const resp = await axios.get(url);
-            setData(resp.data);
-        }
-        getData();
-    }, []);
+        axios.get(`https://8000-andrewszack-gothrowdb-rxyuwddajv2.ws-us77.gitpod.io/api/users/${id}`)
+            .then((resp) => setUsers(resp.data));
+        }, [])
 
 
     return(
@@ -43,9 +38,9 @@ function App() {
                 <Route path="/" element={<Homepage />}/>
                 <Route path="/login" element={<LogIn />}/>
                 <Route path="/signup" element={<SignUp />}/>
-                <Route path="/courses" element={<CourseSelect courses={data} setCourses={setData}/>}/>
-                <Route path="/profile" element={<Profile />}/>
-                <Route path="/hole" element={<Hole />}/>
+                <Route path="/courses" element={<CourseSelect selectedCourse={selectedCourse} setSelectedCourse={setSelectedCourse}/>}/>
+                <Route path="/profile" element={<Profile users={users}/>}/>
+                <Route path="/hole" element={<Hole holes={selectedCourse}/>}/>
             </Routes>
             {/* {page === 'Homepage' && <Homepage handleClick={setPage}/>}
             {page === 'LogIn' && <LogIn handleClick={setPage}/>}
