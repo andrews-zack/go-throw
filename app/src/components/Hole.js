@@ -9,16 +9,15 @@ function Hole({ holes, users }) {
     //     return <span>Loading...</span>
     // }
     // console.log('birds arent real')
-    // console.log(holes[0].hole_list[count])
 
     return(
         <div className="d-flexflex-column justify-content-center">
             <h3>{holes.course_name}</h3>
             <div className="container">
                 <div className="row text-center">
-                    <div className="col">Hole {holes[0].hole_list[count]}</div>
-                    <div className="col">{holes[0].hole_list[count]}ft</div>
-                    <div className="col">Par {holes[0].hole_list[count]}</div>
+                    <div className="col">Hole {holes[0].hole_list[count].hole_num}</div>
+                    <div className="col">{holes[0].hole_list[count].length}ft</div>
+                    <div className="col">Par {holes[0].hole_list[count].par}</div>
                 </div>
             </div>
             <MapSnip map={holes} count={count}/>
@@ -33,10 +32,10 @@ function Hole({ holes, users }) {
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <button onClick={setCount(count-1)} className="btn btn-outline-info">Previous Hole</button>
+                        <button onClick={ () => setCount(count-1)} disabled={count===0 ? true: false} className="btn btn-outline-info">Previous Hole</button>
                     </div>
                     <div className="col justify-content-center">
-                        <button onClick={setCount(count+1)} className="btn btn-outline-info">Next Hole</button>
+                        <button onClick={ () => setCount(count+1)} disabled={count===17 ? true: false} className="btn btn-outline-info">Next Hole</button>
                     </div>
                 </div>
             </div>
