@@ -40,7 +40,7 @@ function App() {
                 <Route path="/signup" element={<SignUp />}/>
                 <Route path="/courses" element={<CourseSelect selectedCourse={selectedCourse} setSelectedCourse={setSelectedCourse}/>}/>
                 <Route path="/profile" element={<Profile users={users}/>}/>
-                <Route path="/hole" element={<Hole holes={selectedCourse}/>}/>
+                <Route path="/hole" element={<Hole holes={selectedCourse} users={users}/>}/>
             </Routes>
             {/* {page === 'Homepage' && <Homepage handleClick={setPage}/>}
             {page === 'LogIn' && <LogIn handleClick={setPage}/>}

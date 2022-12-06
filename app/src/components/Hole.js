@@ -1,24 +1,30 @@
 import MapSnip from "./MapSnip"
 import { useState } from "react"
 
-function Hole({ holes }) {
-    console.log(holes)
-    const [ count, setCount ] = useState(3)
+function Hole({ holes, users }) {
+    // console.log(holes)
+    const [ count, setCount ] = useState(0)
     
+    // if(!holes || holes == undefined) {
+    //     return <span>Loading...</span>
+    // }
+    // console.log('birds arent real')
+    // console.log(holes[0].hole_list[count])
+
     return(
         <div className="d-flexflex-column justify-content-center">
             <h3>{holes.course_name}</h3>
             <div className="container">
                 <div className="row text-center">
-                    <div className="col">Hole {holes.hole_list[count].hole_num}</div>
-                    <div className="col">{holes.hole_list[count].length}ft</div>
-                    <div className="col">Par {holes.hole_list[count].par}</div>
+                    <div className="col">Hole {holes[0].hole_list[count]}</div>
+                    <div className="col">{holes[0].hole_list[count]}ft</div>
+                    <div className="col">Par {holes[0].hole_list[count]}</div>
                 </div>
             </div>
             <MapSnip map={holes} count={count}/>
             <div className="container">
                 <div className="row">
-                    <div className="col-8">Zack Andrews</div>
+                    <div className="col-8">{users.username}</div>
                     <div className="col-4">
                         <input type="score" className="form-control" placeholder="Score"/>
                     </div>

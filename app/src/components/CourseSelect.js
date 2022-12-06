@@ -15,14 +15,20 @@ function CourseSelect({ setSelectedCourse, selectedCourse }) {
             .then((resp) => setCourses(resp.data));
         }, [])
 
-    let navigate = useNavigate();
+        
+        let navigate = useNavigate();
+        
+        let a = navigator.geolocation.getCurrentPosition(position => {
+            const { latitude, longitude } = position.coords
+            a = { latitude: latitude, longitude: longitude }
+            console.log(a)
+        })
 
-    let a = navigator.geolocation.getCurrentPosition(position => {
-        const { latitude, longitude } = position.coords
-        a = { latitude: latitude, longitude: longitude }
-        console.log(a)
-    })
-    function geoLocate() {
+        // if (!a) {
+        //     return <span>Loading...</span>
+        // }
+        
+        function geoLocate() {
         for (let i = 0; i < courses.length; i++) {
             let b = { latitude: courses[i].course_lat, longitude: courses[i].course_long }
             courses[i] = {
@@ -42,7 +48,7 @@ function CourseSelect({ setSelectedCourse, selectedCourse }) {
         // let clicked = e.target
         let thisCourse = courses.filter(item => item.id === id)
         // setSelectedCourse(
-        setSelectedCourse([...thisCourse])
+        setSelectedCourse(thisCourse)
     }
 
     let courseItems = courses.map((item) =>
