@@ -64,7 +64,7 @@ function CourseSelect({ setSelectedCourse, selectedCourse }) {
             
             
             let courseItems = courses.map((item) =>
-            <div className="col-sm-6 col-lg-6 py-1">
+            <div key={item.id} className="col-sm-6 col-lg-6 py-1">
             <div className="card border border-dark h-100">
                 <div onClick={() => {{navigate('/hole')};
                                     setSelectedCourse(`${item.id}`);

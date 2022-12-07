@@ -14,7 +14,7 @@ function Hole({ holes, users }) {
     // }
     // console.log('birds arent real')
 
-    console.log(rnd)
+    console.log(rnd + ' outside')
     
     const roundData = {
         "user": state.currentUser.user_id,
@@ -27,19 +27,20 @@ function Hole({ holes, users }) {
     }
     useEffect(() => {
         setTimeout(() => {for(let i=0; i<18; i++) {
+            console.log(rnd + ' loop')
                 axios.post("https://8000-andrewszack-gothrowdb-rxyuwddajv2.ws-us78.gitpod.io/api/scores/", scoreData).then((response) => {
                     setNum(num+1)
                     console.log(response.status);
                     console.log(response.data);
                 })
             }}, 1000)
-    
+
         axios.post("https://8000-andrewszack-gothrowdb-rxyuwddajv2.ws-us78.gitpod.io/api/rounds/", roundData).then((resp) => {
             console.log(resp.status);
             console.log(resp.data)
             setRnd(resp.data.id)
         })
-    }, [])
+    }, [holes])
 
     return(
         <div className="d-flexflex-column justify-content-center">
