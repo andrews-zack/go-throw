@@ -45,9 +45,7 @@ function CourseSelect({ setSelectedCourse, selectedCourse }) {
     }
 
     const filterData = (id) => {
-        // let clicked = e.target
         let thisCourse = courses.filter(item => item.id === id)
-        // setSelectedCourse(
         setSelectedCourse(thisCourse)
     }
 

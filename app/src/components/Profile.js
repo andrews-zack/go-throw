@@ -17,6 +17,13 @@ const Profile = ({ users }) => {
 
     return(
         <div>
+            <div className="px-3 py-2 text-bg-dark">
+                <div className="container">
+                    <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                    <img className="mb-4" onClick={()=>navigate("/")} src={require("../assets/basket-logo.png")} alt="" width="60" height="60"/>
+                    </div>
+                </div>
+            </div>
             <h1>{users.username}</h1>
             <div className="col-6 d-flex justify-content-center">
                 <button onClick={() => handleLogout()} className="btn btn-light btn-outline-dark">Logout</button>

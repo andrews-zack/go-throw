@@ -2,7 +2,7 @@ import MapSnip from "./MapSnip"
 import { useState } from "react"
 
 function Hole({ holes, users }) {
-    // console.log(holes)
+    
     const [ count, setCount ] = useState(0)
     
     // if(!holes || holes == undefined) {

@@ -16,17 +16,12 @@ function Homepage() {
                     <div className="col-6 d-flex justify-content-center">
                         <button onClick={() => {navigate('/signup')}} className="btn btn-light btn-outline-dark">Sign-up</button>
                     </div>
-
                 </div>
                 <div className="row flex-column justify-content-start align-items-center h-25">
                     <div className="col-6 d-flex justify-content-center">
                         <button onClick={() => {navigate('/courses')}} className="btn btn-light btn-outline-dark">Start a Round</button>
                     </div>
-                    {/* <div className="col-6 d-flex justify-content-center">
-                        <button onClick={() => navigate('/')} className="btn btn-light btn-outline-dark">Hole Demo</button>
-                    </div> */}
                 </div>
-                
             </div>
         </div>
     )
