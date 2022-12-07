@@ -1,14 +1,45 @@
 import MapSnip from "./MapSnip"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import axios from "axios";
+import { useGlobalState } from '../context/GlobalState';
 
 function Hole({ holes, users }) {
-    
-    const [ count, setCount ] = useState(0)
+    const [ count, setCount ] = useState(0);
+    const [ state, dispatch ] = useGlobalState();
+    const [ num, setNum ] = useState(0);
+    const [ rnd, setRnd] = useState('')
     
     // if(!holes || holes == undefined) {
     //     return <span>Loading...</span>
     // }
     // console.log('birds arent real')
+
+    console.log(rnd)
+    
+    const roundData = {
+        "user": state.currentUser.user_id,
+        "course": holes[0].name,
+    }
+    const scoreData = {
+        "user": state.currentUser.user_id,
+        "rounds": rnd,
+        "hole": holes[0].hole_list[num].id,
+    }
+    useEffect(() => {
+        setTimeout(() => {for(let i=0; i<18; i++) {
+                axios.post("https://8000-andrewszack-gothrowdb-rxyuwddajv2.ws-us78.gitpod.io/api/scores/", scoreData).then((response) => {
+                    setNum(num+1)
+                    console.log(response.status);
+                    console.log(response.data);
+                })
+            }}, 1000)
+    
+        axios.post("https://8000-andrewszack-gothrowdb-rxyuwddajv2.ws-us78.gitpod.io/api/rounds/", roundData).then((resp) => {
+            console.log(resp.status);
+            console.log(resp.data)
+            setRnd(resp.data.id)
+        })
+    }, [])
 
     return(
         <div className="d-flexflex-column justify-content-center">

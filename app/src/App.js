@@ -6,7 +6,7 @@ import LogIn from './components/LogIn';
 import SignUp from './components/SignUp';
 import CourseSelect from './components/CourseSelect';
 import Hole from './components/Hole';
-import { GlobalProvider, useGlobalState } from './context/GlobalState'
+import { useGlobalState } from './context/GlobalState'
 import Profile from './components/Profile';
 
 
@@ -27,7 +27,7 @@ function App() {
     }
 
     useEffect(() => {
-        axios.get(`https://8000-andrewszack-gothrowdb-rxyuwddajv2.ws-us77.gitpod.io/api/users/${id}`)
+        axios.get(`https://8000-andrewszack-gothrowdb-rxyuwddajv2.ws-us78.gitpod.io/api/users/${id}`)
             .then((resp) => setUsers(resp.data));
         }, [])
 
