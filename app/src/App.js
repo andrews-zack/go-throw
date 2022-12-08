@@ -10,6 +10,7 @@ import { useGlobalState } from './context/GlobalState'
 import Profile from './components/Profile';
 import request from './services/api.request';
 import { API_URL } from './services/auth.constants';
+import Scorecard from './components/Scorecard';
 
 
 function App() {
@@ -25,6 +26,8 @@ function App() {
 
     if (state.currentUser) {
         id = state.currentUser.user_id
+    } else {
+        id = 0
     }
 
     useEffect(() => {
@@ -55,14 +58,13 @@ function App() {
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/courses" element={
                     <CourseSelect
-                        selectedCourse={selectedCourse}
                         setSelectedCourse={setSelectedCourse}
-                        setRnd={setRnd}
                         postRound={postRound}
                     />
                 } />
                 <Route path="/profile" element={<Profile users={users} />} />
                 <Route path="/hole" element={<Hole holes={selectedCourse} users={users} rnd={rnd} />} />
+                <Route path='/scorecard' element={<Scorecard data={selectedCourse} rnd={rnd}/>} />
             </Routes>
         </>
     )

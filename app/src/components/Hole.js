@@ -3,32 +3,14 @@ import { useState, useEffect, useRef } from "react"
 import axios from "axios";
 import { useGlobalState } from '../context/GlobalState';
 import { API_URL } from "../services/auth.constants";
+import { useNavigate } from "react-router-dom";
 
 function Hole({ holes, users, rnd }) {
     const [state, dispatch] = useGlobalState();
     const [roundScores, setRoundScores] = useState([]);
     const [currentHole, setCurrentHole] = useState(0)
-    // const [inputValue, setInputValue] = useState(0)
-    console.log({ holes, users, rnd })
-    // const [num, setNum] = useState(0);
-    // const [scoreData, setScore] = useState({
-    //     user: state.currentUser.user_id,
-    //     rounds: rnd,
-    //     hole: holes[0].hole_list[num].id,
-    //     score: 0
-    // })
-    // const [scoreID, setScoreID] = useState([])
 
-    // if(!holes || holes == undefined) {
-    //     return <span>Loading...</span>
-    // }
-    // console.log('birds arent real')
-    // let scoreID = []
-    // setTimeout(() => {
-    //     setScoreID(scoreID)
-    // }, 500)
-    // setTimeout(() => { console.log(scoreID) }, 1000)
-
+    let navigate = useNavigate();
     let inputRef = useRef();
 
     useEffect(() => {
@@ -53,7 +35,6 @@ function Hole({ holes, users, rnd }) {
 
         postScores(holes)
             .then((scores) => {
-                console.log(scores);
                 let sorted = scores
                     .sort((a, b) => {
                         return parseFloat(a.hole) - parseFloat(b.hole)
@@ -64,7 +45,6 @@ function Hole({ holes, users, rnd }) {
 
 
     const handleBlur = (key, e) => {
-        console.log(holes.hole_list[currentHole].id)
         let score = roundScores[currentHole];
         let newScore = {
             ...score,
@@ -87,8 +67,6 @@ function Hole({ holes, users, rnd }) {
     }
 
     useEffect(() => {
-        console.log('running');
-        console.log(roundScores)
         if (roundScores.length > 0) {
             inputRef.current.value = roundScores[currentHole].score || ''
         }
@@ -126,6 +104,13 @@ function Hole({ holes, users, rnd }) {
                     </div>
                     <div className="col justify-content-center">
                         <button onClick={() => setCurrentHole(currentHole + 1)} disabled={currentHole === 17 ? true : false} className="btn btn-outline-info">Next Hole</button>
+                    </div>
+                </div>
+            </div>
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <button onClick={() => navigate('/scorecard')} className={currentHole===17 ? "btn btn-outline-info" : "d-none btn btn-outline-info"}>Finish Round</button>
                     </div>
                 </div>
             </div>

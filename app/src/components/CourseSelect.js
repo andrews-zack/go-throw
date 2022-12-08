@@ -6,7 +6,7 @@ import { useGlobalState } from '../context/GlobalState';
 import { API_URL } from '../services/auth.constants';
 
 
-function CourseSelect({ setSelectedCourse, selectedCourse, setRnd, postRound }) {
+function CourseSelect({ setSelectedCourse, postRound }) {
 
     const [courses, setCourses] = useState([]);
     const [state, dispatch] = useGlobalState();
@@ -27,9 +27,6 @@ function CourseSelect({ setSelectedCourse, selectedCourse, setRnd, postRound }) 
     // if (!a) {
     //     return <span>Loading...</span>
     // }
-
-
-    // 1729
 
     function geoLocate() {
         for (let i = 0; i < courses.length; i++) {
