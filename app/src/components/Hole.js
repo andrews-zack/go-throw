@@ -2,45 +2,53 @@ import MapSnip from "./MapSnip"
 import { useState, useEffect } from "react"
 import axios from "axios";
 import { useGlobalState } from '../context/GlobalState';
+import { API_URL } from "../services/auth.constants";
 
-function Hole({ holes, users }) {
+function Hole({ holes, users, rnd }) {
     const [ count, setCount ] = useState(0);
     const [ state, dispatch ] = useGlobalState();
     const [ num, setNum ] = useState(0);
-    const [ rnd, setRnd] = useState('')
+    // const [ rnd, setRnd] = useState(0)
+    const [ scoreData, setScore ] = useState({
+        user: state.currentUser.user_id,
+        rounds: rnd,
+        hole: holes[0].hole_list[num].id,
+        // "score": null
+    })
     
     // if(!holes || holes == undefined) {
     //     return <span>Loading...</span>
     // }
     // console.log('birds arent real')
 
-    console.log(rnd + ' outside')
-    
-    const roundData = {
-        "user": state.currentUser.user_id,
-        "course": holes[0].name,
-    }
-    const scoreData = {
-        "user": state.currentUser.user_id,
-        "rounds": rnd,
-        "hole": holes[0].hole_list[num].id,
-    }
+    // const scoreData = {
+    //     user: state.currentUser.user_id,
+    //     rounds: rnd,
+    //     hole: holes[0].hole_list[num].id,
+    // }
+
     useEffect(() => {
-        setTimeout(() => {for(let i=0; i<18; i++) {
-            console.log(rnd + ' loop')
-                axios.post("https://8000-andrewszack-gothrowdb-rxyuwddajv2.ws-us78.gitpod.io/api/scores/", scoreData).then((response) => {
-                    setNum(num+1)
+        for(let i=0; i<18; i++) {
+            scoreData.hole+=1
+                axios.post(`${API_URL}scores/`, scoreData).then((response) => {
                     console.log(response.status);
                     console.log(response.data);
                 })
-            }}, 1000)
+            }
+        }, [])
 
-        axios.post("https://8000-andrewszack-gothrowdb-rxyuwddajv2.ws-us78.gitpod.io/api/rounds/", roundData).then((resp) => {
-            console.log(resp.status);
-            console.log(resp.data)
-            setRnd(resp.data.id)
+    const handleChange = (key, value) => {
+        console.log(rnd + ' inside')
+        setScore({
+            ...scoreData,
+            [key]: value
         })
-    }, [holes])
+        axios.patch(`${API_URL}scores/`, scoreData).then((response) => {
+            console.log(response.status);
+            console.log(response.data)
+        })
+    }
+
 
     return(
         <div className="d-flexflex-column justify-content-center">
@@ -57,7 +65,7 @@ function Hole({ holes, users }) {
                 <div className="row">
                     <div className="col-8">{users.username}</div>
                     <div className="col-4">
-                        <input type="score" className="form-control" placeholder="Score"/>
+                        <input type="score" onChange={(e) => handleChange("score", e.target.value)} className="form-control" placeholder="Score"/>
                     </div>
                 </div>
             </div>
