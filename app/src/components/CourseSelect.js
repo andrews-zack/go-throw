@@ -16,7 +16,6 @@ function CourseSelect({ setSelectedCourse, selectedCourse, setRnd, postRound }) 
             .then((resp) => setCourses(resp.data));
     }, [])
 
-
     let navigate = useNavigate();
 
     let a = navigator.geolocation.getCurrentPosition(position => {
@@ -28,6 +27,9 @@ function CourseSelect({ setSelectedCourse, selectedCourse, setRnd, postRound }) 
     // if (!a) {
     //     return <span>Loading...</span>
     // }
+
+
+    // 1729
 
     function geoLocate() {
         for (let i = 0; i < courses.length; i++) {
@@ -48,7 +50,7 @@ function CourseSelect({ setSelectedCourse, selectedCourse, setRnd, postRound }) 
             <div className="card border border-dark h-100">
                 <div
                     onClick={() => {
-                        setSelectedCourse(courses.filter(course => course.id === item.id))
+                        setSelectedCourse(courses.filter(course => course.id === item.id)[0])
                         postRound(item.course_name)
                             .then(() => navigate('/hole'));
                     }}
