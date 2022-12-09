@@ -5,7 +5,7 @@ import { API_URL } from '../services/auth.constants';
 import axios from 'axios';
 
 
-function Scorecard({ data, rnd }) {
+function Scorecard({ data, rnd, users }) {
     const [ score, setScore ] = useState([])
     const [ state, dispatch ] = useGlobalState()
 
@@ -17,7 +17,6 @@ function Scorecard({ data, rnd }) {
     }, [])
     
     scorecard = score.filter(item => item.rounds === rnd)
-    // console.log(scorecard[0])
     if (scorecard.length === 0) {
         return(
             <h1>Loading</h1>
@@ -31,20 +30,21 @@ function Scorecard({ data, rnd }) {
                 <thead>
                     <tr>
                         <th colSpan={4}>{data.course_name}</th>
-                        <th colSpan={5}>{state.currentUser.username}</th>
+                        <th colSpan={4}>{users.username}</th>
+                        <th colSpan={1}>-12</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>3</td>
-                        <td>4</td>
-                        <td>5</td>
-                        <td>6</td>
-                        <td>7</td>
-                        <td>8</td>
-                        <td>9</td>
+                        <td className="fw-bold">1</td>
+                        <td className="fw-bold">2</td>
+                        <td className="fw-bold">3</td>
+                        <td className="fw-bold">4</td>
+                        <td className="fw-bold">5</td>
+                        <td className="fw-bold">6</td>
+                        <td className="fw-bold">7</td>
+                        <td className="fw-bold">8</td>
+                        <td className="fw-bold">9</td>
                     </tr>
                     <tr>
                         <td>{scorecard[0].score}</td>
@@ -58,15 +58,15 @@ function Scorecard({ data, rnd }) {
                         <td>{scorecard[8].score}</td>
                     </tr>
                     <tr>
-                        <td>10</td>
-                        <td>11</td>
-                        <td>12</td>
-                        <td>13</td>
-                        <td>14</td>
-                        <td>15</td>
-                        <td>16</td>
-                        <td>17</td>
-                        <td>18</td>
+                        <td className="fw-bold">10</td>
+                        <td className="fw-bold">11</td>
+                        <td className="fw-bold">12</td>
+                        <td className="fw-bold">13</td>
+                        <td className="fw-bold">14</td>
+                        <td className="fw-bold">15</td>
+                        <td className="fw-bold">16</td>
+                        <td className="fw-bold">17</td>
+                        <td className="fw-bold">18</td>
                     </tr>
                     <tr>
                         <td>{scorecard[9].score}</td>
@@ -81,6 +81,9 @@ function Scorecard({ data, rnd }) {
                     </tr>
                 </tbody>
             </table>
+            <div className="container d-flex h-100 align-items-end justify-content-end">
+
+            </div>
         </div>
         )
 }

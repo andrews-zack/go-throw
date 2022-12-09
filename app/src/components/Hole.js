@@ -73,19 +73,21 @@ function Hole({ holes, users, rnd }) {
     }, [currentHole])
 
     return (
-        <div className="d-flexflex-column justify-content-center">
-            <h3>{holes.course_name}</h3>
-            <div className="container">
-                <div className="row text-center">
-                    <div className="col">Hole {holes.hole_list[currentHole].hole_num}</div>
-                    <div className="col">{holes.hole_list[currentHole].length}ft</div>
-                    <div className="col">Par {holes.hole_list[currentHole].par}</div>
+        <div className="d-flex vh-100 flex-column justify-content-center">
+            <h2>{holes.course_name}</h2>
+            <div className="container h-auto">
+                <div className="row text-center py-2">
+                    <div className="col fw-bold">Hole {holes.hole_list[currentHole].hole_num}</div>
+                    <div className="col fw-bold">{holes.hole_list[currentHole].length}ft</div>
+                    <div className="col fw-bold">Par {holes.hole_list[currentHole].par}</div>
                 </div>
             </div>
-            <MapSnip map={holes} count={currentHole} />
-            <div className="container">
+            <div className="container h-auto">
+                <MapSnip map={holes} count={currentHole} />
+            </div>
+            <div className="container h-auto py-3">
                 <div className="row">
-                    <div className="col-8">{users.username}</div>
+                    <div className="col-8 fw-bold fs-5">{users.username}</div>
                     <div className="col-4">
                         <input
                             ref={inputRef}
@@ -97,23 +99,38 @@ function Hole({ holes, users, rnd }) {
                     </div>
                 </div>
             </div>
-            <div className="container">
-                <div className="row">
-                    <div className="col">
-                        <button onClick={() => setCurrentHole(currentHole - 1)} disabled={currentHole === 0 ? true : false} className="btn btn-outline-info">Previous Hole</button>
+            <div className="container d-flex h-25 align-items-end">
+                <div className="row vw-100 justify-content-between mb-2">
+                    <div className="col-6 d-flex justify-content-start">
+                        <button 
+                            onClick={() => setCurrentHole(currentHole - 1)}
+                            disabled={currentHole === 0 ? true : false}
+                            className="btn btn-lg btn-outline-info">
+                            Previous Hole
+                        </button>
                     </div>
-                    <div className="col justify-content-center">
-                        <button onClick={() => setCurrentHole(currentHole + 1)} disabled={currentHole === 17 ? true : false} className="btn btn-outline-info">Next Hole</button>
+                    <div className="col-6 d-flex justify-content-end">
+                        <button 
+                            onClick={() => setCurrentHole(currentHole + 1)}
+                            disabled={currentHole === 17 ? true : false}
+                            className={currentHole===17 ? "d-none btn btn-lg btn-outline-info" : " btn btn-lg btn-outline-info"}>
+                            Next Hole
+                        </button>
+                        <button 
+                            onClick={() => navigate('/scorecard')}
+                            className={currentHole===17 ? "btn btn-lg btn-outline-info" : "d-none btn btn-lg btn-outline-info"}>
+                            Finish Round
+                        </button>
                     </div>
                 </div>
             </div>
-            <div className="container">
+            {/* <div className="container h-auto">
                 <div className="row">
                     <div className="col">
                         <button onClick={() => navigate('/scorecard')} className={currentHole===17 ? "btn btn-outline-info" : "d-none btn btn-outline-info"}>Finish Round</button>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

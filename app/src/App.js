@@ -64,7 +64,7 @@ function App() {
                 } />
                 <Route path="/profile" element={<Profile users={users} />} />
                 <Route path="/hole" element={<Hole holes={selectedCourse} users={users} rnd={rnd} />} />
-                <Route path='/scorecard' element={<Scorecard data={selectedCourse} rnd={rnd}/>} />
+                <Route path='/scorecard' element={<Scorecard data={selectedCourse} rnd={rnd} users={users}/>} />
             </Routes>
         </>
     )
