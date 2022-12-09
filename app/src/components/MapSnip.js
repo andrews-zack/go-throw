@@ -18,13 +18,13 @@ export default function MapSnip({map, count}) {
 function Map() {
     return (
         <GoogleMap
-            zoom = {19}
-            center = {center}
-            mapContainerClassName = 'map-container w-100'
-            mapTypeControl = {false}
-            mapTypeId = 'satellite'
-            tilt = {0}
-            options={disableDefaultUI}>
+            zoom={19}
+            center={center}
+            mapContainerClassName='map-container w-100'
+            mapTypeControl={false}
+            mapTypeId='satellite'
+            tilt={0}
+            fullscreenControl={false}>
         </GoogleMap>
         )
 }

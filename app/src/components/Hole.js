@@ -74,7 +74,9 @@ function Hole({ holes, users, rnd }) {
 
     return (
         <div className="d-flex vh-100 flex-column justify-content-center">
-            <h2>{holes.course_name}</h2>
+            <div className="container h-auto">
+                <h2>{holes.course_name}</h2>
+            </div>
             <div className="container h-auto">
                 <div className="row text-center py-2">
                     <div className="col fw-bold">Hole {holes.hole_list[currentHole].hole_num}</div>
