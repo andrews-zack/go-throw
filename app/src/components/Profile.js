@@ -16,8 +16,8 @@ const Profile = ({ users }) => {
     }
 
     return(
-        <div>
-            <div className="px-3 py-2 text-bg-dark">
+        <div id="bg">
+            <div className="px-3 py-2" id="gray">
                 <div className="container">
                     <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                     <img className="mb-4" onClick={()=>navigate("/")} src={require("../assets/basket-logo.png")} alt="" width="60" height="60"/>

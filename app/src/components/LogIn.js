@@ -32,11 +32,12 @@ const LogIn = ({ handleClick }) => {
 
 
     return(
-        <div>
-            <main className="c-form w-100 m-auto">
+        <>
+        <div className="d-flex align-items-center vh-100 text-center container">
+            <main className="c-form w-100 mb-5 pb-5">
+                <img src={require("../assets/basket-logo.png")} alt="" width="72" height="72"/>
                 <form onSubmit={handleLogin}>
-                    <img className="mb-4" src={require("../assets/basket-logo.png")} alt="" width="72" height="72"/>
-                    <h1 className="h3 mb-3 fw-normal">Please log in</h1>
+                    <h1 className="h3 mb-3 fw-normal text-center mt-3">Please log in</h1>
                     <div className="form-floating">
                         <input onChange={(e) => setUsername(e.target.value)} required type="username" className="form-control" id="username" placeholder="Username"/>
                         <label htmlFor="floatingInput">Username</label>
@@ -45,10 +46,11 @@ const LogIn = ({ handleClick }) => {
                         <input onChange={(e) => setPassword(e.target.value)} type="password" required className="form-control" id="password" placeholder="Password"/>
                         <label htmlFor="floatingPassword">Password</label>
                     </div>
-                    <button className="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
+                    <button className="w-100 btn btn-lg btn-info" type="submit">Log in</button>
                 </form>
             </main>
         </div>
+        </>
     )
 }
 

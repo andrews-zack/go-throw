@@ -5,7 +5,7 @@ import { useGlobalState } from '../context/GlobalState';
 import { API_URL } from "../services/auth.constants";
 import { useNavigate } from "react-router-dom";
 
-function Hole({ holes, users, rnd }) {
+function Hole({ holes, users, rnd, id }) {
     const [state, dispatch] = useGlobalState();
     const [roundScores, setRoundScores] = useState([]);
     const [currentHole, setCurrentHole] = useState(0)
@@ -17,7 +17,7 @@ function Hole({ holes, users, rnd }) {
         const postScores = (holes) => {
             const promises = holes.hole_list.map(async (hole) => {
                 let score = {
-                    user: state.currentUser.user_id,
+                    user: id,
                     rounds: rnd,
                     hole: hole.id,
                 }
@@ -73,21 +73,21 @@ function Hole({ holes, users, rnd }) {
     }, [currentHole])
 
     return (
-        <div className="d-flex vh-100 flex-column justify-content-center">
-            <div className="container h-auto">
-                <h2>{holes.course_name}</h2>
+        <div className="d-flex vh-100 flex-column justify-content-center" id="bg">
+            <div className="container h-auto text-white mb-5 d-flex border border-top-0 border-info rounded-bottom" id="gray">
+                <p className="fw-bold fs-1">{holes.course_name}</p>
             </div>
             <div className="container h-auto">
-                <div className="row text-center py-2">
+                <div className="row text-center py-2 text-white border border-info rounded-top" id="gray">
                     <div className="col fw-bold">Hole {holes.hole_list[currentHole].hole_num}</div>
                     <div className="col fw-bold">{holes.hole_list[currentHole].length}ft</div>
                     <div className="col fw-bold">Par {holes.hole_list[currentHole].par}</div>
                 </div>
             </div>
-            <div className="container h-auto">
+            <div className="container h-auto text-white border border-info border-top-0 border-bottom-0" id="gray">
                 <MapSnip map={holes} count={currentHole} />
             </div>
-            <div className="container h-auto py-3">
+            <div className="container h-auto py-3 text-white border border-info rounded-bottom" id="gray">
                 <div className="row">
                     <div className="col-8 fw-bold fs-5">{users.username}</div>
                     <div className="col-4">
@@ -107,7 +107,7 @@ function Hole({ holes, users, rnd }) {
                         <button 
                             onClick={() => setCurrentHole(currentHole - 1)}
                             disabled={currentHole === 0 ? true : false}
-                            className="btn btn-lg btn-outline-info">
+                            className="btn btn-lg btn-outline-info" id="gray">
                             Previous Hole
                         </button>
                     </div>
@@ -115,24 +115,17 @@ function Hole({ holes, users, rnd }) {
                         <button 
                             onClick={() => setCurrentHole(currentHole + 1)}
                             disabled={currentHole === 17 ? true : false}
-                            className={currentHole===17 ? "d-none btn btn-lg btn-outline-info" : " btn btn-lg btn-outline-info"}>
+                            className={currentHole===17 ? "d-none btn btn-lg btn-outline-info" : " btn btn-lg btn-outline-info"} id="gray">
                             Next Hole
                         </button>
                         <button 
                             onClick={() => navigate('/scorecard')}
-                            className={currentHole===17 ? "btn btn-lg btn-outline-info" : "d-none btn btn-lg btn-outline-info"}>
+                            className={currentHole===17 ? "btn btn-lg btn-outline-info" : "d-none btn btn-lg btn-outline-info"} id="gray">
                             Finish Round
                         </button>
                     </div>
                 </div>
             </div>
-            {/* <div className="container h-auto">
-                <div className="row">
-                    <div className="col">
-                        <button onClick={() => navigate('/scorecard')} className={currentHole===17 ? "btn btn-outline-info" : "d-none btn btn-outline-info"}>Finish Round</button>
-                    </div>
-                </div>
-            </div> */}
         </div>
     )
 }

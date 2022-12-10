@@ -51,18 +51,20 @@ function CourseSelect({ setSelectedCourse, postRound }) {
                         postRound(item.course_name)
                             .then(() => navigate('/hole'));
                     }}
-                    className="card-body"
+                    className="card-body border border-info rounded" id="gray"
                 >
-                    <h5 className="card-title fs-2 fw-bold">{item.course_name}</h5>
-                    <p className="card-text fs-4" style={{minHeight: '36px'}}>{item.distance && `${item.distance} miles away`}</p>
+                    <h5 className="card-title fs-2 fw-bold text-white">{item.course_name}</h5>
+                    <p className="card-text fs-4 text-white" style={{minHeight: '36px'}}>{item.distance && `${item.distance} miles away`}</p>
                 </div>
             </div>
         </div>
     )
 
     return (
-        <div>
-            <button onClick={() => { geoLocate() }} className="btn btn-info">Do the thing</button>
+        <div className="vh-100" id="bg">
+            <div className="container pt-2">
+                <button onClick={() => { geoLocate() }} className="btn btn-info">Find a course near you!</button>
+            </div>
             <div className="container mt-3 pt-3" id="cont">
                 <div className="row">
                     {courseItems}

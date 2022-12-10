@@ -20,14 +20,14 @@ function App() {
     const [selectedCourse, setSelectedCourse] = useState({})
     const [rnd, setRnd] = useState(0);
 
-    // const url = 'https://8000-andrewszack-gothrowdb-rxyuwddajv2.ws-us77.gitpod.io/api/users/';
+
 
     let id = ''
 
     if (state.currentUser) {
         id = state.currentUser.user_id
     } else {
-        id = 0
+        id = 11
     }
 
     useEffect(() => {
@@ -40,7 +40,7 @@ function App() {
 
     const postRound = async (name) => {
         const roundData = {
-            "user": state.currentUser.user_id,
+            "user": id,
             "course": name,
         }
         return await axios.post(`${API_URL}rounds/`, roundData).then((resp) => {
@@ -63,8 +63,8 @@ function App() {
                     />
                 } />
                 <Route path="/profile" element={<Profile users={users} />} />
-                <Route path="/hole" element={<Hole holes={selectedCourse} users={users} rnd={rnd} />} />
-                <Route path='/scorecard' element={<Scorecard data={selectedCourse} rnd={rnd} users={users}/>} />
+                <Route path="/hole" element={<Hole holes={selectedCourse} users={users} rnd={rnd} id={id}/>} />
+                <Route path='/scorecard' element={<Scorecard data={selectedCourse} rnd={rnd} users={users} id={id}/>} />
             </Routes>
         </>
     )
