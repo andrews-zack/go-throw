@@ -9,29 +9,31 @@ function Scorecard({ data, rnd, users, id }) {
     const [ score, setScore ] = useState([])
     const [ state, dispatch ] = useGlobalState()
     let navigate = useNavigate();
-
-    let scorecard = []
-
+    
     useEffect(() => {
     axios.get(`${API_URL}scores/`)
         .then((resp) => setScore(resp.data));
     }, [])
+
+    let scorecard = []
+
+    // useEffect(() => {
+    //     async function getData() {
+    //         const response = await axios.get(`${API_URL}scores/`);
+    //         setScore(response.data);
+    //     }
+    //     getData();
+    //     }, []);
     
+    console.log(score)
     scorecard = score.filter(item => item.rounds === rnd)
-    if (scorecard.length === 0) {
-        return(
-            <h1>Loading</h1>
-        )
-    }
+    console.log(scorecard)
     
     let total_score = 0
     for (let i=0; i<scorecard.length; i++) {
         total_score += scorecard[i].score
     }
-    console.log(total_score)
-    console.log(data)
     const user_score = total_score - data.course_par
-    console.log(user_score)
         
         return(
         <div className="vh-100" id="bg">

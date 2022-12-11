@@ -21,9 +21,9 @@ function CourseSelect({ setSelectedCourse, postRound }) {
     let a = navigator.geolocation.getCurrentPosition(position => {
         const { latitude, longitude } = position.coords
         a = { latitude: latitude, longitude: longitude }
-        console.log(a)
+    console.log(a)
     })
-
+    
     // if (!a) {
     //     return <span>Loading...</span>
     // }

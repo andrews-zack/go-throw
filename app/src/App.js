@@ -21,7 +21,6 @@ function App() {
     const [rnd, setRnd] = useState(0);
 
 
-
     let id = ''
 
     if (state.currentUser) {
@@ -62,7 +61,7 @@ function App() {
                         postRound={postRound}
                     />
                 } />
-                <Route path="/profile" element={<Profile users={users} />} />
+                <Route path="/profile" element={<Profile users={users} rnd={rnd} />} />
                 <Route path="/hole" element={<Hole holes={selectedCourse} users={users} rnd={rnd} id={id}/>} />
                 <Route path='/scorecard' element={<Scorecard data={selectedCourse} rnd={rnd} users={users} id={id}/>} />
             </Routes>
