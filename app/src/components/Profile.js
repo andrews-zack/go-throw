@@ -14,7 +14,7 @@ const Profile = ({ users }) => {
     useEffect(() => {
         axios.get(`${API_URL}scores/`)
             .then((resp) => setScorecard(resp.data));
-        }, [])
+        }, [users])
 
         let userScores = []
         userScores = scorecard.filter(item => item.user===state.currentUser.user_id)
@@ -34,7 +34,7 @@ const Profile = ({ users }) => {
                 <div className="container">
                     <div className="row">
                         <div className="col-6 d-flex justify-content-start pt-1 pb-2">
-                            <img className="" onClick={()=>setTimeout(() => {navigate('/')},500)} src={require("../assets/basket-logo.png")} alt="" width="60" height="60"/>
+                            <img className="" onClick={()=>navigate('/')} src={require("../assets/basket-logo.png")} alt="" width="60" height="60"/>
                         </div>
                         <div className="col-6 d-flex justify-content-end pt-1 pb-2">
                             <button onClick={() => handleLogout()} className="btn btn-lg btn-outline-info">Logout</button>

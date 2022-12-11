@@ -6,36 +6,32 @@ import axios from 'axios';
 
 
 function Scorecard({ data, rnd, users, id }) {
-    const [ score, setScore ] = useState([])
-    const [ state, dispatch ] = useGlobalState()
+    const [score, setScore] = useState([])
+    const [state, dispatch] = useGlobalState()
     let navigate = useNavigate();
-    
+
+
     useEffect(() => {
-    axios.get(`${API_URL}scores/`)
-        .then((resp) => setScore(resp.data));
-    }, [])
+        async function getData() {
+            const response = await axios.get(`${API_URL}scores/`);
+            setScore(response.data);
+        }
+        getData();
+    }, []);
 
     let scorecard = []
 
-    // useEffect(() => {
-    //     async function getData() {
-    //         const response = await axios.get(`${API_URL}scores/`);
-    //         setScore(response.data);
-    //     }
-    //     getData();
-    //     }, []);
-    
-    console.log(score)
-    scorecard = score.filter(item => item.rounds === rnd)
-    console.log(scorecard)
-    
+    scorecard = score.filter(item => item.rounds == rnd)
+
     let total_score = 0
-    for (let i=0; i<scorecard.length; i++) {
+    for (let i = 0; i < scorecard.length; i++) {
         total_score += scorecard[i].score
     }
     const user_score = total_score - data.course_par
-        
-        return(
+
+    if (scorecard.length === 0) return null
+
+    return (
         <div className="vh-100" id="bg">
             <div className="container mb-5 border border-top-0 border-info rounded-bottom" id="gray">
                 <p className="fw-bold text-white" id="title">Scorecard</p>
@@ -100,22 +96,22 @@ function Scorecard({ data, rnd, users, id }) {
             <div className="container d-flex h-50 align-items-end">
                 <div className="row vw-100 justify-content-between mb-2">
                     <div className="col-6 d-flex justify-content-start">
-                        <button 
-                            onClick={() => {navigate('/')}}
+                        <button
+                            onClick={() => { navigate('/') }}
                             className="btn btn-lg btn-outline-info" id="gray">
                             Home
                         </button>
                     </div>
                     <div className="col-6 d-flex justify-content-end">
-                        <button 
+                        <button
                             onClick={() => navigate('/profile')}
-                            className={id===11 ? "d-none btn btn-lg btn-outline-info" : "btn btn-lg btn-outline-info"} id="gray">
+                            className={id === 11 ? "d-none btn btn-lg btn-outline-info" : "btn btn-lg btn-outline-info"} id="gray">
                             Profile
                         </button>
                     </div>
                 </div>
             </div>
         </div>
-        )
+    )
 }
 export default Scorecard
