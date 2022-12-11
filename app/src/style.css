@@ -11,3 +11,7 @@
 #bg {
     background-image: linear-gradient(to right, rgb(104, 104, 104), rgb(115, 115, 115))
 }
+
+#title {
+    font-size: 2.25em;
+}

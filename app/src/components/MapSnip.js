@@ -3,6 +3,10 @@ import { GoogleMap, useLoadScript } from '@react-google-maps/api'
 
 
 let center = {}
+const options={
+    disableDefaultUI: true,
+    mapTypeId: 'satellite'
+}
 
 export default function MapSnip({map, count}) {
     const key = process.env.REACT_APP_PUBLIC_GOOGLE_MAPS_API_KEY
@@ -22,9 +26,8 @@ function Map() {
             center={center}
             mapContainerClassName='map-container w-100'
             mapTypeControl={false}
-            mapTypeId='satellite'
             tilt={0}
-            fullscreenControl={false}>
+            options={options}>
         </GoogleMap>
         )
 }

@@ -23,19 +23,28 @@ function Scorecard({ data, rnd, users, id }) {
             <h1>Loading</h1>
         )
     }
-
-    return(
+    
+    let total_score = 0
+    for (let i=0; i<scorecard.length; i++) {
+        total_score += scorecard[i].score
+    }
+    console.log(total_score)
+    console.log(data)
+    const user_score = total_score - data.course_par
+    console.log(user_score)
+        
+        return(
         <div className="vh-100" id="bg">
             <div className="container mb-5 border border-top-0 border-info rounded-bottom" id="gray">
-                <p className="fs-1 fw-bold text-white">Scorecard</p>
+                <p className="fw-bold text-white" id="title">Scorecard</p>
             </div>
             <div className="container mt-5 pt-3 h-auto border border-info rounded d-flex align-items-center" id="gray">
                 <table className="table table-bordered table-striped table-sm bg-white">
                     <thead>
                         <tr>
                             <th colSpan={4}>{data.course_name}</th>
-                            <th colSpan={5}>{users.username}</th>
-                            {/* <th colSpan={1}>-12</th> */}
+                            <th colSpan={4}>{users.username}</th>
+                            <th colSpan={1}>{user_score}</th>
                         </tr>
                     </thead>
                     <tbody>

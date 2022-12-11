@@ -75,7 +75,7 @@ function Hole({ holes, users, rnd, id }) {
     return (
         <div className="d-flex vh-100 flex-column justify-content-center" id="bg">
             <div className="container h-auto text-white mb-5 d-flex border border-top-0 border-info rounded-bottom" id="gray">
-                <p className="fw-bold fs-1">{holes.course_name}</p>
+                <p className="fw-bold" id="title">{holes.course_name}</p>
             </div>
             <div className="container h-auto">
                 <div className="row text-center py-2 text-white border border-info rounded-top" id="gray">
@@ -106,21 +106,28 @@ function Hole({ holes, users, rnd, id }) {
                     <div className="col-6 d-flex justify-content-start">
                         <button 
                             onClick={() => setCurrentHole(currentHole - 1)}
-                            disabled={currentHole === 0 ? true : false}
-                            className="btn btn-lg btn-outline-info" id="gray">
+                            className={currentHole===0 ? "d-none btn btn-lg btn-outline-info" : "btn btn-lg btn-outline-info"} id="gray"
+                            >
                             Previous Hole
+                        </button>
+                        <button 
+                            onClick={() => navigate('/courses')}
+                            className={currentHole===0 ? "btn btn-lg btn-outline-info" : "d-none btn btn-lg btn-outline-info"} id="gray"
+                            >
+                            Course Select
                         </button>
                     </div>
                     <div className="col-6 d-flex justify-content-end">
                         <button 
                             onClick={() => setCurrentHole(currentHole + 1)}
-                            disabled={currentHole === 17 ? true : false}
-                            className={currentHole===17 ? "d-none btn btn-lg btn-outline-info" : " btn btn-lg btn-outline-info"} id="gray">
+                            className={currentHole===17 ? "d-none btn btn-lg btn-outline-info" : " btn btn-lg btn-outline-info"} id="gray"
+                            >
                             Next Hole
                         </button>
                         <button 
-                            onClick={() => navigate('/scorecard')}
-                            className={currentHole===17 ? "btn btn-lg btn-outline-info" : "d-none btn btn-lg btn-outline-info"} id="gray">
+                            onClick={() => setTimeout(() => {navigate('/scorecard')},500)}
+                            className={currentHole===17 ? "btn btn-lg btn-outline-info" : "d-none btn btn-lg btn-outline-info"} id="gray"
+                            >
                             Finish Round
                         </button>
                     </div>
