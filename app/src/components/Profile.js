@@ -29,7 +29,7 @@ const Profile = ({ users }) => {
     userScores = scorecard.filter(item => item.user===state.currentUser.user_id)
     // if (userScores.length===0) return null
     console.log(userScores)
-    let i=0
+    // let i=0
     // while (i < userScores.length) {
         for (let j=0; j<((userScores.length)/18); j+=18) {
             renderedScores = userScores.map((item) =>
@@ -38,7 +38,7 @@ const Profile = ({ users }) => {
                     <p className="fw-bold text-white" id="title">Scorecard</p>
                 </div> */}
                 <div className="container mt-3 pt-3 h-auto border border-info rounded d-flex align-items-center" id="gray">
-                    <table className="table table-bordered table-striped table-sm bg-white pt-3 overflow-auto">
+                    <table className="table table-bordered table-striped table-sm bg-white pt-2">
                         <thead>
                             <tr>
                                 <th colSpan={4}>Course</th>
@@ -126,7 +126,7 @@ const Profile = ({ users }) => {
                     </div>
                 </div>
             </div>
-            <div className="container h-75 border border-info rounded mt-3" id="gray">
+            <div className="container h-75 border border-info rounded mt-3 overflow-auto" id="gray">
                 {renderedScores}
             </div>
         </div>
