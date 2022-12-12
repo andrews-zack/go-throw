@@ -21,7 +21,7 @@ function Scorecard({ data, rnd, users, id }) {
 
     let scorecard = []
 
-    scorecard = score.filter(item => item.rounds == rnd)
+    scorecard = score.filter(item => item.rounds === rnd)
 
     let total_score = 0
     for (let i = 0; i < scorecard.length; i++) {
